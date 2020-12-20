@@ -4,19 +4,23 @@ import java.util.Scanner;
 
 public class App {
   public static void main(String[] args) {
+    // RegistarCliente();
+  }
+  public static void ResgistarCliente(){
     String nome, profissao, dataNascimento, temaPreferencial;
+    
 
-    Scanner scanner = new Scanner(System.in);
     Autor a1 = new Autor();
-
-    System.out.println("Introduza o nome -> ");
-    nome=scanner.nextLine();
-    System.out.println("Introduza o profissao -> ");
-    profissao=scanner.nextLine();
-    System.out.println("Introduza o dataNascimento -> ");
-    dataNascimento=scanner.nextLine();
-    System.out.println("Introduza o temaPreferencial -> ");
-    temaPreferencial=scanner.nextLine();
+    Scanner scanner = new Scanner(System.in);
+    
+    System.out.print("nome");
+    nome = scanner.nextLine();
+    System.out.print("profissao");
+    profissao = scanner.nextLine();
+    System.out.print("data de nascimento");
+    dataNascimento = scanner.nextLine();
+    System.out.print("tema preferencial");
+    temaPreferencial = scanner.nextLine();
 
     a1.setNome(nome);
     a1.setProfissao(profissao);
@@ -24,5 +28,5 @@ public class App {
     a1.setTemaPreferencial(temaPreferencial);
 
     System.out.println(a1.toString());
-  }
+  }<
 }
