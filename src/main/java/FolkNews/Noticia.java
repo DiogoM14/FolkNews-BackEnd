@@ -1,6 +1,6 @@
 package FolkNews;
 
-public class Noticia extends Autor {
+public class Noticia extends Utilizador {
 
   private String titulo;
   private String corpo;

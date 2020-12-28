@@ -1,6 +1,8 @@
 package FolkNews;
 
-public class Autor {
+import java.util.Objects;
+
+public class Utilizador {
     private String nome;
     private String email;
     private String password;
@@ -8,7 +10,7 @@ public class Autor {
     private String dataNascimento;
     private String temaPreferencial;
     
-    public Autor() {
+    public Utilizador() {
         this.nome=null;
         this.email=null;
         this.password=null;
@@ -17,7 +19,7 @@ public class Autor {
         this.temaPreferencial=null;
     }
     
-    public Autor(String nome, String email, String password, String profissao, String dataNascimento, String temaPreferencial) {
+    public Utilizador(String nome, String email, String password, String profissao, String dataNascimento, String temaPreferencial) {
         this.nome=nome;
         this.nome=email;
         this.nome=password;
@@ -84,6 +86,24 @@ public class Autor {
             ", dataNascimento='" + getDataNascimento() + "'" +
             ", temaPreferencial='" + getTemaPreferencial() + "'" +
             "}";
+    }
+
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof Utilizador)) {
+            return false;
+        }
+        Utilizador utilizador = (Utilizador) o;
+        return Objects.equals(email, utilizador.email);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(email);
     }
    
 }
