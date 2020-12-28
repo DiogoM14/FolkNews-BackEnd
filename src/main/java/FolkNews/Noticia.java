@@ -1,18 +1,18 @@
 package FolkNews;
 
-public class noticia extends Autor {
+public class Noticia extends Autor {
 
   private String titulo;
   private String corpo;
   private String data;
 
-  public noticia() {
+  public Noticia() {
     this.titulo = null;
     this.corpo = null;
     this.data = null;
   }
 
-  public noticia(String titulo, String corpo, String data) {
+  public Noticia(String titulo, String corpo, String data) {
     this.titulo = titulo;
     this.corpo = corpo;
     this.data = data;
