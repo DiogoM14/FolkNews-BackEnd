@@ -1,6 +1,7 @@
-package FolkNews;
+package FolkNews.entities;
 
 import java.util.Objects;
+import FolkNews.entities.enums.UserType;
 
 public class Utilizador {
     private String nome;
@@ -9,25 +10,21 @@ public class Utilizador {
     private String profissao;
     private String dataNascimento;
     private String temaPreferencial;
-    
+    private UserType userType;
+
     public Utilizador() {
-        this.nome=null;
-        this.email=null;
-        this.password=null;
-        this.profissao=null;
-        this.dataNascimento=null;
-        this.temaPreferencial=null;
     }
-    
-    public Utilizador(String nome, String email, String password, String profissao, String dataNascimento, String temaPreferencial) {
-        this.nome=nome;
-        this.nome=email;
-        this.nome=password;
-        this.profissao=profissao;
-        this.dataNascimento=dataNascimento;
-        this.temaPreferencial=temaPreferencial;
+
+    public Utilizador(String nome, String email, String password, String profissao, String dataNascimento,
+            String temaPreferencial, UserType userType) {
+        this.nome = nome;
+        this.nome = email;
+        this.nome = password;
+        this.profissao = profissao;
+        this.dataNascimento = dataNascimento;
+        this.temaPreferencial = temaPreferencial;
+        this.userType = userType;
     }
-    
 
     public String getNome() {
         return this.nome;
@@ -77,18 +74,20 @@ public class Utilizador {
         this.temaPreferencial = temaPreferencial;
     }
 
-    @Override
-    public String toString() {
-        return "{" +
-            " nome='" + getNome() + "'" +
-            ", email='" + getEmail() + "'" +
-            ", profissao='" + getProfissao() + "'" +
-            ", dataNascimento='" + getDataNascimento() + "'" +
-            ", temaPreferencial='" + getTemaPreferencial() + "'" +
-            "}";
+    public UserType getUserType() {
+        return this.userType;
     }
 
+    public void setUserType(UserType userType) {
+        this.userType = userType;
+    }
 
+    @Override
+    public String toString() {
+        return "{" + " nome='" + getNome() + "'" + ", email='" + getEmail() + "'" + "'"
+                + ", profissao='" + getProfissao() + "'" + ", dataNascimento='" + getDataNascimento() + "'"
+                + ", temaPreferencial='" + getTemaPreferencial() + "'" + ", userType='" + getUserType() + "'" + "}";
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -105,5 +104,4 @@ public class Utilizador {
     public int hashCode() {
         return Objects.hash(email);
     }
-   
 }

@@ -1,4 +1,4 @@
-package FolkNews;
+package FolkNews.entities;
 
 public class Noticia extends Utilizador {
 
