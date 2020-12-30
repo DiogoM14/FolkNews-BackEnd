@@ -18,8 +18,8 @@ public class Utilizador {
     public Utilizador(String nome, String email, String password, String profissao, String dataNascimento,
             String temaPreferencial, UserType userType) {
         this.nome = nome;
-        this.nome = email;
-        this.nome = password;
+        this.email = email;
+        this.password = password;
         this.profissao = profissao;
         this.dataNascimento = dataNascimento;
         this.temaPreferencial = temaPreferencial;
@@ -84,9 +84,9 @@ public class Utilizador {
 
     @Override
     public String toString() {
-        return "{" + " nome='" + getNome() + "'" + ", email='" + getEmail() + "'" + "'"
-                + ", profissao='" + getProfissao() + "'" + ", dataNascimento='" + getDataNascimento() + "'"
-                + ", temaPreferencial='" + getTemaPreferencial() + "'" + ", userType='" + getUserType() + "'" + "}";
+        return "{" + " nome='" + getNome() + "'" + ", email='" + getEmail() + "'" + ", profissao='" + getProfissao()
+                + "'" + ", dataNascimento='" + getDataNascimento() + "'" + ", temaPreferencial='"
+                + getTemaPreferencial() + "'" + ", userType='" + getUserType() + "'" + "}";
     }
 
     @Override
@@ -102,6 +102,7 @@ public class Utilizador {
 
     @Override
     public int hashCode() {
-        return Objects.hash(email);
+        return Objects.hashCode(email);
     }
+
 }

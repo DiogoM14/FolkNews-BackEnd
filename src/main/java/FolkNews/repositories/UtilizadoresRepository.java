@@ -5,15 +5,17 @@ import FolkNews.entities.Utilizador;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.*;
 
-public class ListaUtilizadores {
+public class UtilizadoresRepository {
   private List<Utilizador> utilizadores = new ArrayList<>();
 
-  public ListaUtilizadores() {
+  public UtilizadoresRepository() {
   }
 
   public boolean registoUtilizador(Utilizador user) {
-    boolean foiRegistado = this.utilizadores.add(user);;
+    boolean foiRegistado = this.utilizadores.add(user);
+
     return foiRegistado;
   }
 
@@ -32,18 +34,15 @@ public class ListaUtilizadores {
     return this.utilizadores;
   }
 
-  public Utilizador getUtilizadorPorEmail(String email) {
-    Utilizador user = this.utilizadores.stream().filter(x -> x.getEmail() == email).findFirst();
+  public Utilizador getUtilizadorFiltrado(Utilizador user) {
 
-    return user;
+    int userFiltered = this.utilizadores.indexOf(user);
+
+    return this.utilizadores.get(userFiltered);
+
   }
 
   public void setUtilizadores(List<Utilizador> utilizadores) {
     this.utilizadores = utilizadores;
-  }
-
-  @Override
-  public String toString() {
-    return "{" + " utilizadores='" + getUtilizadores() + "'" + "}";
   }
 }

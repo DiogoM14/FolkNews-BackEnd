@@ -4,25 +4,26 @@ import java.util.Scanner;
 
 import FolkNews.entities.Utilizador;
 import FolkNews.entities.enums.UserType;
-import FolkNews.repositories.ListaUtilizadores;
+import FolkNews.repositories.UtilizadoresRepository;
 import FolkNews.views.Menu;
 
 public class App {
   static Scanner scanner = new Scanner(System.in);
 
   public static void main(String[] args) {
-    ListaUtilizadores utilizador = new ListaUtilizadores();
+    UtilizadoresRepository utilizadorRepository = new UtilizadoresRepository(); // Instância o repo dos utilizadores
     Menu.execMenu();
+
     int opcao = 0;
 
     do {
       opcao = scanner.nextInt();
       switch (opcao) {
         case 1:
-          login(utilizador);
+          login(utilizadorRepository);
           break;
         case 2:
-          registarAutor(utilizador);
+          registarUtilizador(utilizadorRepository);
           break;
         default:
           System.out.println("Opção inválida.");
@@ -30,11 +31,12 @@ public class App {
     } while (opcao != 0);
   }
 
-  public static void registarAutor(ListaUtilizadores utilizador) {
+  public static void registarUtilizador(UtilizadoresRepository utilizador) {
     String nome, email, password, profissao, dataNascimento, temaPreferencial;
     int tipoDeUtilizador = 0;
-    Utilizador a1 = new Utilizador();
+    Utilizador a1 = new Utilizador(); // Instância o modelo da entidade utilizador
 
+    // Formulário -------------------------------------------------------
     scanner.nextLine();
     System.out.print("Nome e Apelido -> ");
     nome = scanner.nextLine();
@@ -50,6 +52,7 @@ public class App {
     temaPreferencial = scanner.nextLine();
     System.out.print("Tipo de Registo (1 = EDITOR, 2 = LEITOR) -> ");
     tipoDeUtilizador = scanner.nextInt();
+    // ----------------------------------------------------------------
 
     while (tipoDeUtilizador != 1 && tipoDeUtilizador != 2) {
       System.out.print("Escolha o tipo de Registo entre 1 ou 2 (1 = EDITOR, 2 = LEITOR) -> ");
@@ -67,17 +70,22 @@ public class App {
     if (utilizador.existe(a1)) {
       System.out.println("Erro");
       System.out.println(a1.toString());
-    } else {    
+      System.out.println(utilizador.toString());
+      Menu.execMenu();
+    } else {
       boolean userRegistered = utilizador.registoUtilizador(a1);
-      if(userRegistered != false){
+      if (userRegistered != false) {
         System.out.println(a1.toString());
-      }else{
+        System.out.println(utilizador.getUtilizadores());
+        System.out.println(utilizador.getUtilizadorFiltrado(a1));
+        Menu.execMenu();
+      } else {
         System.out.println("Desculpa, aconteceu um erro, tente novamente mais tarde.");
       }
     }
   }
 
-  public static void login(ListaUtilizadores utilizador) {
+  public static void login(UtilizadoresRepository utilizador) {
     String email, password;
 
     Utilizador a1 = new Utilizador();
