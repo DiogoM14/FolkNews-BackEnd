@@ -1,19 +1,20 @@
 package FolkNews.entities;
 
-public class Noticia extends Utilizador {
+import java.util.Date;
+
+public class Artigo extends Utilizador {
 
   private String titulo;
+  private String resumo;
   private String corpo;
-  private String data;
+  private Date data;
 
-  public Noticia() {
-    this.titulo = null;
-    this.corpo = null;
-    this.data = null;
+  public Artigo() {
   }
 
-  public Noticia(String titulo, String corpo, String data) {
+  public Artigo(String titulo, String resumo, String corpo, Date data) {
     this.titulo = titulo;
+    this.resumo = resumo;
     this.corpo = corpo;
     this.data = data;
   }
@@ -27,6 +28,14 @@ public class Noticia extends Utilizador {
     this.titulo = titulo;
   }
 
+  public String getResumo() {
+    return this.resumo;
+  }
+
+  public void getResumo(String resumo) {
+    this.resumo = resumo;
+  }
+
   public String getCorpo() {
     return this.corpo;
   }
@@ -35,11 +44,11 @@ public class Noticia extends Utilizador {
     this.corpo = corpo;
   }
 
-  public String getData() {
+  public Date getData() {
     return this.data;
   }
 
-  public void setData(String data) {
+  public void setData(Date data) {
     this.data = data;
   }
 
@@ -47,10 +56,10 @@ public class Noticia extends Utilizador {
   public String toString() {
     return "{" +
       " titulo='" + getTitulo() + "'" +
+      ", resumo='" + getResumo() + "'" +
       ", corpo='" + getCorpo() + "'" +
       ", data='" + getData() + "'" +
       "}";
   }
 
-  
 }
