@@ -1,16 +1,18 @@
 package FolkNews.repositories;
 
 import FolkNews.entities.Utilizador;
+import FolkNews.entities.enums.UserType;
+import FolkNews.util.UtilizadoresFiltrados;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.*;
 
 public class UtilizadoresRepository {
-  private List<Utilizador> utilizadores = new ArrayList<>();
+  private List<Utilizador> utilizadores;
+  private UtilizadoresFiltrados util = new UtilizadoresFiltrados();
 
-  public UtilizadoresRepository() {
+  public UtilizadoresRepository(List<Utilizador> utilizadores) {
+    this.utilizadores = utilizadores;
   }
 
   public boolean registoUtilizador(Utilizador user) {
@@ -34,12 +36,11 @@ public class UtilizadoresRepository {
     return this.utilizadores;
   }
 
-  public Utilizador getUtilizadorFiltrado(Utilizador user) {
+  public Utilizador getUtilizadorFiltrado(String nome) {
 
-    int userFiltered = this.utilizadores.indexOf(user);
+    Utilizador utilizador = util.filtrarUtilizador(getUtilizadores(), u -> u.getNome().toLowerCase() == nome);
 
-    return this.utilizadores.get(userFiltered);
-
+    return utilizador;
   }
 
   public void setUtilizadores(List<Utilizador> utilizadores) {

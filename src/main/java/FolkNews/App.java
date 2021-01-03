@@ -7,11 +7,12 @@ import FolkNews.service.RegistarUtilizador;
 import FolkNews.views.Menu;
 
 public class App {
-  static Scanner scanner = new Scanner(System.in);
 
   public static void main(String[] args) {
-    UtilizadoresRepository utilizadorRepository = new UtilizadoresRepository(); // Instância o repo dos utilizadores
+    Scanner scanner = new Scanner(System.in);
     Menu.execMenu();
+
+    RegistarUtilizador ru = new RegistarUtilizador();
 
     int opcao = 0;
 
@@ -22,7 +23,7 @@ public class App {
           // login(utilizadorRepository);
           break;
         case 2:
-          RegistarUtilizador.execRegisto(utilizadorRepository);
+          ru.execRegisto();
           break;
         default:
           System.out.println("Opção inválida.");

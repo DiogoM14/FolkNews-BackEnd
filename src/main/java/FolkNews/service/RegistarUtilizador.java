@@ -1,5 +1,7 @@
 package FolkNews.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import FolkNews.entities.Utilizador;
@@ -8,16 +10,19 @@ import FolkNews.repositories.UtilizadoresRepository;
 import FolkNews.views.Menu;
 
 public class RegistarUtilizador {
-  static Scanner scanner = new Scanner(System.in);
+  Scanner scanner = new Scanner(System.in);
 
-  private RegistarUtilizador() {}
+  List<Utilizador> utilizadores = new ArrayList<>();
+  UtilizadoresRepository utilizadorRepository = new UtilizadoresRepository(utilizadores);
 
-  public static void execRegisto(UtilizadoresRepository utilizador) {
+  public void execRegisto() {
+
     String nome, email, password, profissao, dataNascimento, temaPreferencial;
     int tipoDeUtilizador = 0;
     Utilizador a1 = new Utilizador(); // Instância o modelo da entidade utilizador
 
     // Formulário -------------------------------------------------------
+    scanner.nextLine();
     System.out.print("Nome e Apelido -> ");
     nome = scanner.nextLine();
     System.out.print("E-mail -> ");
@@ -32,8 +37,11 @@ public class RegistarUtilizador {
     temaPreferencial = scanner.nextLine();
     System.out.print("Tipo de Registo (1 = EDITOR, 2 = LEITOR) -> ");
     tipoDeUtilizador = scanner.nextInt();
+    
+    System.out.println("Nome " + nome + ", " + "Email " + email + ", "+ "Password "+  password + ", " + "Profissao " + profissao + ", " + "Data de nascimento " + dataNascimento + ", " + "Tema preferencial " + temaPreferencial + ", " + "Tipo de utilizador " + tipoDeUtilizador);
     // ----------------------------------------------------------------
 
+    // ----------------------------------------------------------------
     while (tipoDeUtilizador != 1 && tipoDeUtilizador != 2) {
       System.out.print("Escolha o tipo de Registo entre 1 ou 2 (1 = EDITOR, 2 = LEITOR) -> ");
       tipoDeUtilizador = scanner.nextInt();
@@ -47,17 +55,19 @@ public class RegistarUtilizador {
       a1 = new Utilizador(nome, email, password, profissao, dataNascimento, temaPreferencial, userTypeEnum);
     }
 
-    if (utilizador.existe(a1)) {
-      System.out.println("Erro");
-      System.out.println(a1.toString());
-      System.out.println(utilizador.toString());
+    // ----------------------------------------------------------------
+
+    if (utilizadorRepository.existe(a1)) {
+      // System.out.println("Utilizador já existente" + a1.toString());
+      System.out.println("Utilizador filtrado " + utilizadorRepository.getUtilizadorFiltrado(a1.getNome()));
+      
       Menu.execMenu();
     } else {
-      boolean userRegistered = utilizador.registoUtilizador(a1);
-      if (userRegistered != false) {
+      boolean userRegistered = utilizadorRepository.registoUtilizador(a1);
+      if (userRegistered == true) {
         System.out.println(a1.toString());
-        System.out.println(utilizador.getUtilizadores());
-        System.out.println(utilizador.getUtilizadorFiltrado(a1));
+        System.out.println("Todos os utilizadores " + utilizadorRepository.getUtilizadores());
+        System.out.println("GET NOME " + a1.getNome());
         Menu.execMenu();
       } else {
         System.out.println("Desculpa, aconteceu um erro, tente novamente mais tarde.");
