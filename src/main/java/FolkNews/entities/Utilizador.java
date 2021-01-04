@@ -97,16 +97,11 @@ public class Utilizador {
             return false;
         }
         Utilizador utilizador = (Utilizador) o;
-        return Objects.equals(nome, utilizador.nome) && Objects.equals(email, utilizador.email)
-                && Objects.equals(password, utilizador.password) && Objects.equals(profissao, utilizador.profissao)
-                && Objects.equals(dataNascimento, utilizador.dataNascimento)
-                && Objects.equals(temaPreferencial, utilizador.temaPreferencial)
-                && Objects.equals(userType, utilizador.userType);
+        return Objects.equals(email, utilizador.email);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(nome, email, password, profissao, dataNascimento, temaPreferencial, userType);
+        return Objects.hash(email);
     }
-
 }

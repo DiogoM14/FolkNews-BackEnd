@@ -12,7 +12,7 @@ public class App {
     Scanner scanner = new Scanner(System.in);
     Menu.execMenu();
 
-    RegistarUtilizador ru = new RegistarUtilizador();
+    RegistarUtilizador registar = new RegistarUtilizador();
 
     int opcao = 0;
 
@@ -23,7 +23,7 @@ public class App {
           // login(utilizadorRepository);
           break;
         case 2:
-          ru.execRegisto();
+          registar.execRegisto();
           break;
         default:
           System.out.println("Opção inválida.");

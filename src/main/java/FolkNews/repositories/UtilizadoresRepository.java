@@ -1,10 +1,8 @@
 package FolkNews.repositories;
 
 import FolkNews.entities.Utilizador;
-import FolkNews.entities.enums.UserType;
 import FolkNews.util.UtilizadoresFiltrados;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class UtilizadoresRepository {
@@ -16,15 +14,14 @@ public class UtilizadoresRepository {
   }
 
   public boolean registoUtilizador(Utilizador user) {
-    boolean foiRegistado = this.utilizadores.add(user);
 
-    return foiRegistado;
+    return this.utilizadores.add(user);
   }
 
-  public boolean existe(Utilizador user) {
-    boolean seExiste = this.utilizadores.contains(user);
+  public boolean existe(Utilizador user) {  // user = a1
+    boolean existe = this.utilizadores.contains(user);
 
-    if (seExiste) {
+    if (existe) {
       return true;
     }
 
