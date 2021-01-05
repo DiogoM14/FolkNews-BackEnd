@@ -7,9 +7,10 @@ import FolkNews.entities.Utilizador;
 
 public class UtilizadoresFiltrados {
 
-    public Utilizador filtrarUtilizador(List<Utilizador> list, Predicate<Utilizador> criteria) {
-        for (Utilizador utilizador : list) {
-            if (criteria.test(utilizador)) {
+    public Utilizador filtrarUtilizador(List<Utilizador> email, Predicate<Utilizador> criterio) {
+        System.out.println("asdasdasdasd" + email);
+        for (Utilizador utilizador : email) {
+            if (criterio.test(utilizador)) {
                 return utilizador;
             }
         }

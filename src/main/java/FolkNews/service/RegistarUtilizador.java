@@ -12,13 +12,14 @@ import FolkNews.views.Menu;
 public class RegistarUtilizador {
   Scanner scanner = new Scanner(System.in);
 
-  List<Utilizador> utilizadores = new ArrayList<>();
-  UtilizadoresRepository utilizadorRepository = new UtilizadoresRepository(utilizadores);
+  // List<Utilizador> utilizadores = new ArrayList<>();
+  UtilizadoresRepository utilizadorRepository = new UtilizadoresRepository();
 
   public void execRegisto() {
 
     String nome, email, password, profissao, dataNascimento, temaPreferencial;
     int tipoDeUtilizador = 0;
+    Boolean existe;
     Utilizador a1 = new Utilizador(); // Instância o modelo da entidade utilizador
 
     // Formulário -------------------------------------------------------
@@ -53,9 +54,11 @@ public class RegistarUtilizador {
     }
     // ----------------------------------------------------------------
 
-    if (utilizadorRepository.existe(a1)) {
+    if (utilizadorRepository.existe(a1.getEmail())) {
       // Se existe 
-      // System.out.println("Utilizador filtrado " + utilizadorRepository.getUtilizadorFiltrado(a1.getNome()));
+
+
+
       System.out.println("Este E-mail já se encontra registado. Tente novamente!");
       Menu.execMenu();
     } else {
@@ -63,7 +66,7 @@ public class RegistarUtilizador {
       utilizadorRepository.registoUtilizador(a1);
 
       System.out.println(a1.toString());
-      System.out.println("Todos os utilizadores " + utilizadorRepository.getUtilizadores());
+      System.out.println(utilizadorRepository.getUtilizadores());
       Menu.execMenu();
     }
   }

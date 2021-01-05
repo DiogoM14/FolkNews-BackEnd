@@ -3,14 +3,14 @@ package FolkNews.repositories;
 import FolkNews.entities.Utilizador;
 import FolkNews.util.UtilizadoresFiltrados;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UtilizadoresRepository {
-  private List<Utilizador> utilizadores;
+  private ArrayList<Utilizador> utilizadores = new ArrayList<>();
   private UtilizadoresFiltrados util = new UtilizadoresFiltrados();
 
-  public UtilizadoresRepository(List<Utilizador> utilizadores) {
-    this.utilizadores = utilizadores;
+  public UtilizadoresRepository() {
   }
 
   public boolean registoUtilizador(Utilizador user) {
@@ -18,29 +18,35 @@ public class UtilizadoresRepository {
     return this.utilizadores.add(user);
   }
 
-  public boolean existe(Utilizador user) {  // user = a1
-    boolean existe = this.utilizadores.contains(user);
-
-    if (existe) {
-      return true;
-    }
-
-    return false;
+  public Utilizador getUtilizador(int pos) {
+    return this.utilizadores.get(pos);
   }
 
-  // GETTER AND SETTER
+  public Utilizador getUtilizador(Utilizador user) {
+    int pos;
+    pos = this.utilizadores.indexOf(user);
+    return this.utilizadores.get(pos);
+  }
+
   public List<Utilizador> getUtilizadores() {
     return this.utilizadores;
   }
 
-  public Utilizador getUtilizadorFiltrado(String nome) {
-
-    Utilizador utilizador = util.filtrarUtilizador(getUtilizadores(), u -> u.getNome().toLowerCase() == nome);
-
-    return utilizador;
+  public Boolean existe(String email) {  // user = a1
+    System.out.println("RAPOSITORY" + this.utilizadores);
+    Utilizador utilizador = util.filtrarUtilizador(getUtilizadores(), u -> u.getEmail().toLowerCase() == email);
+    return this.utilizadores.contains(utilizador);
   }
 
-  public void setUtilizadores(List<Utilizador> utilizadores) {
-    this.utilizadores = utilizadores;
+  // public Utilizador getUtilizadorFiltrado(String nome) {
+
+  //   Utilizador utilizador = util.filtrarUtilizador(getUtilizadores(), u -> u.getNome().toLowerCase() == nome);
+
+  //   return utilizador;
+  // }
+
+  @Override
+  public String toString() {
+    return "Todos os utilizadores { " + utilizadores + " }";
   }
 }
